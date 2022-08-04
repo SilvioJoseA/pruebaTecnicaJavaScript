@@ -35,20 +35,14 @@ export default class CView extends View {
             }
         });
 
+    
         //Crear una función async waitForClick() que retorne 
-        //una promesa que se resuelva una vez que se aprete el botón Click. 
-            Utils.onClickById('click5', async function (event) {
-                event.preventDefault(event);
-                  await  Utils.waitFor3();
-                    alert('Await for seconds');
-                    console.log('Await for seconds');
-                });
-                //Crear una función async waitForClick() que retorne 
         //una promesa que se resuelva una vez que se aprete el botón Click. 
         Utils.onClickById('click0',function (event) {
             Utils.waitForClick();
         });
         Utils.waitFor5Final();
+        Utils.waitFor3Final();
 
     }
 
