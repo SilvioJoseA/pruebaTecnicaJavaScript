@@ -326,17 +326,52 @@ Utils.waitForClick = async function () {
     then((results) => results.forEach((result) => console.log(result.value)));
 
 }
-Utils.waitFor5Final = async function(){
-    const promise1 = Promise.resolve(
-        Utils.onClickById('click2',function(event){
-            console.log('5 o click');
-        })
-    );
-    const promise2 = new Promise((resolve, reject) => setTimeout(reject, 5000, 'Pasaron 5 sec'));
+Utils.waitFor5Final = function(){
+     //const promise1 = new Promise((resolve, reject) => setTimeout(reject, 5000, console.log('Pasaron 5 segundos')));
+     const promise1 = new Promise((resolve,reject) => {
+            Utils.onClickById('click2',function(event){
 
-    const promises = [promise1, promise2];
+                    resolve('5 o click');
+            
+              }
+         ) 
+            });
+
+        const promise2 = new Promise((resolve, reject) => {
+          setTimeout(resolve, 5000, 'pasaron 5 segundos');
+        });
         
-        Promise.all(promises).then((value) => console.log(value));
+        Promise.all([promise1, promise2]).then((values) => {
+          console.log(values);
+         if(values[0]){
+          alert(values[1]);
+         }
+        });
+    
+}
+
+Utils.waitFor3Final = function(){
+   
+        //const promise1 = new Promise((resolve, reject) => setTimeout(reject, 5000, console.log('Pasaron 5 segundos')));
+        const promise1 = new Promise((resolve,reject) => {
+            Utils.onClickById('click1',function(event){
+
+                    resolve('3 o click');
+            
+              }
+         ) 
+            });
+
+        const promise2 = new Promise((resolve, reject) => {
+          setTimeout(resolve, 3000, '3 o Click');
+        });
+        
+        Promise.any([promise1, promise2]).then((values) => {
+          console.log(values);
+         if(values[0]){
+          alert(values);
+         }
+        });
 }
 
 
